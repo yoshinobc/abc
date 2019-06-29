@@ -1,5 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+int gcd(int a,int b)
+{
+ if (b==0) return a;
+ return gcd(b,a%b);
+}
+
+int main()
+{
+  cin.tie(0);
+  ios::sync_with_stdio(false);
+  int n;
+  int max_num = 0;
+  cin >> n;
+  vector<int> vect(n);
+  for(int i=0;i<n;i++){
+    int a;
+    cin >> a;
+    vect[i] = a;
+  }
+  int ans=1;
+  int k = *max_element(vect.begin(),vect.end());
+  if(n==2) ans = k;
+  else
+  {
+    for(int i=1;i<sqrt(k)+1;i++)
+    {
+      int count = 0;
+      for(int j=0;j<n;j++)
+      {
+        if(vect[j]%i==0){
+          count++;
+          vect[j] /= i;
+        }
+        if(count == n-1) ans*=i;
+      }
+    }
+  }
+  cout << ans << endl;
+  }
+
 /*
 int main()
 {
@@ -78,6 +119,7 @@ int main()
   return 0;
 }
 */
+/*
 int main()
 {
   int a,b,k;
@@ -94,3 +136,4 @@ int main()
   else cout << ans[ans.size()-k] << endl;
   return 0;
 }
+*/
